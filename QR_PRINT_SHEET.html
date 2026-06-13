@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PNU QuestMate V7 QR Sheet</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;margin:24px;background:#f8fafc;color:#111827}
+.head{display:flex;gap:14px;align-items:center;margin-bottom:18px}.head img{width:58px;height:58px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:white;border:1px solid #e5e7eb;border-radius:18px;padding:16px;break-inside:avoid}
+.qr{display:flex;gap:14px;align-items:center}.qr img{width:130px;height:130px;border:1px solid #e5e7eb;border-radius:12px;background:white}
+.code{font-family:ui-monospace,monospace;background:#f1f5f9;padding:6px 8px;border-radius:8px;display:inline-block}
+@media print{body{background:white}.card{box-shadow:none}}
+</style></head><body>
+<div class="head"><img src="assets/pnu_mark.svg"><div><h1>PNU QuestMate V7 운영 QR 샘플</h1><p>실제 운영에서는 학교/부서가 장소별 QR과 오늘 현장코드를 관리합니다.</p></div></div>
+<div class="grid">
+<script>
+const spots=[
+ ['library','새벽벌도서관','📚','QM-V7-LIBRARY-ENTRY','QM-V7-LIBRARY-EXIT'],
+ ['meal','금정회관/학생식당','🍚','QM-V7-MEAL-ENTRY','QM-V7-MEAL-EXIT'],
+ ['notice','공지 확인 존','📣','QM-V7-NOTICE-ENTRY','QM-V7-NOTICE-EXIT'],
+ ['team','팀 챌린지 존','🤝','QM-V7-TEAM-ENTRY','QM-V7-TEAM-EXIT']
+];
+document.write(spots.map(([id,name,emoji,entry,exit])=>`
+<div class="card"><h2>${emoji} ${name} · 입장</h2><div class="qr"><img src="assets/qr/${id}_entry.png"><div><b>입장 QR</b><br><span class="code">${entry}</span></div></div></div>
+<div class="card"><h2>${emoji} ${name} · 퇴장</h2><div class="qr"><img src="assets/qr/${id}_exit.png"><div><b>퇴장 QR</b><br><span class="code">${exit}</span></div></div></div>`).join(''));
+</script>
+</div></body></html>
